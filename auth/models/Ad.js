@@ -19,9 +19,9 @@ const adSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Please add a price"],
     },
-    // rating: {
-    //   type: Number,
-    // }
+    rating: {
+      type: Number,
+    }
   },
   {
     timestamps: true,

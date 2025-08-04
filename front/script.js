@@ -21,9 +21,8 @@ const price = document.getElementById("price");
 const submitAd = document.getElementById("submitAd");
 const adsContainer = document.getElementById("adsContainer");
 const deleteBtn = document.getElementById("DeleteAdBtn");
-const textRating = document.getElementById("textRating");
+const rateButton = document.getElementById("rateButton");
 const adRating = document.getElementById("adRating")
-const inputRating = document.getElementById("inputRating")
 // URL
 const URL = "http://localhost:3000";
 let editingAdId = null;
@@ -131,6 +130,7 @@ submitAd.addEventListener("click", (event) => {
   const titleValue = title.value;
   const descriptionValue = description.value;
   const priceValue = price.value;
+  const rating = 0;
 
   if (!token) {
     alert("Log in first");
@@ -143,7 +143,7 @@ submitAd.addEventListener("click", (event) => {
     price: priceValue,
     user: userId,
     userEmail: userEmail,
-    role: role,
+    rating: rating,
   };
 
   const url = editingAdId ? `${URL}/ads/${editingAdId}` : `${URL}/ads`;
@@ -185,6 +185,8 @@ const displayAds = (dataFromDB) => {
   const userRole = getDataFromLS.role;
 
   dataFromDB.forEach((ad) => {
+  let likes = 0;
+
     const card = document.createElement("div");
     card.className = "card";
 
@@ -201,21 +203,26 @@ const displayAds = (dataFromDB) => {
     adAuthor.textContent = "Author: " + ad.user;
 
     const adRating = document.createElement("p");
-    adRating.textContent = "Rating " + ad.rating
+    adRating.textContent = "Likes " + likes
 
-    // if (userId === ad.user ) {
-    //   const textRating = document.createElement("p");
-    //   const inputRating = document.createElement("input")
-    //   textRating.textContent = "Rate this: "
-    //   card,appendChild(textRating);
-    //   card.appendChild(inputRating);
+    // if (userId != ad.user ) {
+    //   const rateButton = document.createElement("button")
+    //   rateButton.classList = "blue"
+    //   rateButton.textContent = "Like"
+    //   card.appendChild(rateButton)
+    //   rateButton.addEventListener("click", (e) => {
+    //   rateButton.classList.toggle('liked');
+    //   likes = rateButton.classList.contains('liked') ? likes + 1 : likes - 1;
+    //   adRating.textContent = `Likes: ${likes}`;
+    // });
     // }
+
 
     card.appendChild(adTitle);
     card.appendChild(adDescription);
     card.appendChild(adPrice);
     card.appendChild(adAuthor);
-    // card.appendChild(adRating);
+    card.appendChild(adRating);
 
     if (userId === ad.user || userRole === "admin") {
       const deleteBtn = document.createElement("button");

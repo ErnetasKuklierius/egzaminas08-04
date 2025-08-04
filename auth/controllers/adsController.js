@@ -4,7 +4,7 @@ const Ad = require("../models/Ad.js");
 //POST /ads
 
 const createAd = asynchandler(async (req, res) => {
-  const { title, description, price } = req.body;
+  const { title, description, price, rating } = req.body;
 
   if (!title || !description || !price) {
     res.status(400);
@@ -15,9 +15,11 @@ const createAd = asynchandler(async (req, res) => {
     description: description,
     price: price,
     user: req.user.id,
+    rating: rating,
   });
   res.status(200).json(newAd);
 });
+
 
 // Get all ads
 //GET  /ads

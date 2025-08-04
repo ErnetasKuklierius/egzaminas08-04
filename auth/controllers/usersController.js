@@ -3,16 +3,6 @@ const { generateToken } = require("../functions/generateToken.js");
 const bcryptjs = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 
-// const jwt = require("jsonwebtoken");
-
-// const generateToken = (id) => {
-//   const generatedJWT = jwt.sign({ id }, process.env.JWT_SALT, {
-//     expiresIn: "10d",
-//   });
-//   return generatedJWT;
-// };
-// registration
-// @ POST /users
 const registerUser = asyncHandler(async (req, res) => {
   const { userName, email, password } = req.body;
 
