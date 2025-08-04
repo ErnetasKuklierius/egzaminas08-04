@@ -21,6 +21,9 @@ const price = document.getElementById("price");
 const submitAd = document.getElementById("submitAd");
 const adsContainer = document.getElementById("adsContainer");
 const deleteBtn = document.getElementById("DeleteAdBtn");
+const textRating = document.getElementById("textRating");
+const adRating = document.getElementById("adRating")
+const inputRating = document.getElementById("inputRating")
 // URL
 const URL = "http://localhost:3000";
 let editingAdId = null;
@@ -88,16 +91,20 @@ console.log(getDataFromLS ? "hello, " + getDataFromLS.email : "Guest");
 // sukurti skelbima
 // POST /ads
 
+
 function clearLS() {
   localStorage.clear();
   localStorage.setItem("loggedIn", 0);
-  console.log("cleared localstorage");
+  location.reload();
 }
 
 function isLoggedIn() {
   const check = localStorage.getItem("loggedIn");
   if (check == 1) {
     skelbimai.style.display = "block";
+    logout.style.display = "block";
+    register.style.display = "none"
+    loginas.style.display = "none"
     console.log("prisijunges");
   } else {
     skelbimai.style.display = "none";
@@ -136,6 +143,7 @@ submitAd.addEventListener("click", (event) => {
     price: priceValue,
     user: userId,
     userEmail: userEmail,
+    role: role,
   };
 
   const url = editingAdId ? `${URL}/ads/${editingAdId}` : `${URL}/ads`;
@@ -174,6 +182,7 @@ submitAd.addEventListener("click", (event) => {
 const displayAds = (dataFromDB) => {
   adsContainer.innerHTML = "";
   const userId = getDataFromLS._id;
+  const userRole = getDataFromLS.role;
 
   dataFromDB.forEach((ad) => {
     const card = document.createElement("div");
@@ -191,12 +200,24 @@ const displayAds = (dataFromDB) => {
     const adAuthor = document.createElement("p");
     adAuthor.textContent = "Author: " + ad.user;
 
+    const adRating = document.createElement("p");
+    adRating.textContent = "Rating " + ad.rating
+
+    // if (userId === ad.user ) {
+    //   const textRating = document.createElement("p");
+    //   const inputRating = document.createElement("input")
+    //   textRating.textContent = "Rate this: "
+    //   card,appendChild(textRating);
+    //   card.appendChild(inputRating);
+    // }
+
     card.appendChild(adTitle);
     card.appendChild(adDescription);
     card.appendChild(adPrice);
     card.appendChild(adAuthor);
+    // card.appendChild(adRating);
 
-    if (userId === ad.user) {
+    if (userId === ad.user || userRole === "admin") {
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Delete";
       deleteBtn.style.backgroundColor = "red";

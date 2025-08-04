@@ -11,8 +11,9 @@
 
 <body>
   <h1>SKELBIMŲ APLIKACIJA</h1>
-  <button onclick="clearLS()">Clear localstorage</button>
+  <button onclick="clearLS()" id="logout">logout</button>
 
+  <div id="register">
   <h2>Registracija</h2>
   <form method="post">
     <label for="userNameReg">UserName</label>
@@ -26,7 +27,8 @@
 
     <button type="submit" id="submitReg">Registruotis</button>
   </form>
-
+  </div>
+  <div id="loginas">
   <h2>Prisijungimas</h2>
   <form method="POST">
     <label for="emailLogin">Email</label>
@@ -37,6 +39,7 @@
 
     <button type="submit" id="submitLog">Prisijungti</button>
   </form>
+  </div>
   <section id="skelbimai">
     <div id="root">
       <button id="allAds">All</button>
