@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <h1>SKELBIMŲ APLIKACIJA</h1>
+  <button onclick="clearLS()">Clear localstorage</button>
+
+  <h2>Registracija</h2>
+  <form method="post">
+    <label for="userNameReg">UserName</label>
+    <input type="text" name="userNameReg" id="userNameReg" />
+
+    <label for="emailReg">Email</label>
+    <input type="email" name="emailReg" id="emailReg" />
+
+    <label for="passwordReg">Password</label>
+    <input type="password" name="passwordReg" id="passwordReg" />
+
+    <button type="submit" id="submitReg">Registruotis</button>
+  </form>
+
+  <h2>Prisijungimas</h2>
+  <form method="POST">
+    <label for="emailLogin">Email</label>
+    <input type="email" name="emailLogin" id="emailLogin" />
+
+    <label for="passwordLogin">Password</label>
+    <input type="password" name="passwordLogin" id="passwordLogin" />
+
+    <button type="submit" id="submitLog">Prisijungti</button>
+  </form>
+  <section id="skelbimai">
+    <div id="root">
+      <button id="allAds">All</button>
+      <button id="myAds">My Ads</button>
+
+      <h2>Sukurti skelbimą</h2>
+      <form method="POST">
+        <label for="title">Skelbimo Pavadinimas</label>
+        <input type="text" name="title" id="title" />
+
+        <label for="description">Skelbimo aprašymas</label>
+        <textarea name="description" id="description"></textarea>
+
+        <label for="price">Kaina</label>
+        <input type="number" name="price" id="price" />
+
+        <button type="submit" id="submitAd">Paskelbti</button>
+      </form>
+      <div id="adsContainer"></div>
+    </div>
+  </section>
+</body>
+
+</html>
